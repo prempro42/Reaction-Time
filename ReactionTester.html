@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<head>
+	<title>Reaction Timer!</title>
+</head>
+<style>
+	#shape {
+		width: 200px;
+		height: 200px;
+		background-color: tomato;
+		display: none;
+		position: relative;
+	}
+
+	#body{
+		font-family: 'Courier New', Courier, monospace
+	}
+</style>
+
+<body id ="body">
+	<h1>Check your reaction time!</h1>
+	<p >click on squares & cirlces as soon as appear!</p>
+	<p style="font-weight: bold;color: blue;">Your Time: <span id='timetaken'></span></p>
+
+	<div id='shape'></div>
+
+	<script>
+		var start = new Date().getTime();
+
+		function getRandomColor() {
+			var letters = '0123456789ABCDEF';
+			var color = '#';
+			for (var i = 0; i < 6; i++) {
+				color += letters[Math.floor(Math.random() * 16)];
+			}
+			return color;
+		}
+
+		
+
+		function objectAppear() {
+			var top = Math.random() * 400;
+			var width = (Math.random() * 200)+80;
+			var left = Math.random() * 1000;
+			if(Math.random() > 0.5){
+			document.getElementById('shape').style.borderRadius = "50%";
+		}
+
+
+		else{
+			document.getElementById('shape').style.borderRadius = "0";
+		}
+			document.getElementById('shape').style.backgroundColor = getRandomColor();
+			document.getElementById('shape').style.top = top + "px";
+			document.getElementById('shape').style.left = left + "px";
+			document.getElementById('shape').style.width = width + "px";
+			document.getElementById('shape').style.height = width + "px";
+			document.getElementById('shape').style.display = 'block';
+			start = new Date().getTime();
+
+		}
+
+		function appearAfterDelay() {
+			setTimeout(objectAppear, Math.random() * 1100);
+		}
+
+		appearAfterDelay();
+
+		document.getElementById('shape').onclick = function () {
+			var end = new Date().getTime();
+			document.getElementById('shape').style.display = 'none';
+
+			var timetaken = (end - start) / 1000;
+
+			document.getElementById('timetaken').innerHTML = timetaken + " Seconds";
+
+			appearAfterDelay();
+
+		}
+
+
+
+	</script>
+
+</body>
+
+</html>
