@@ -1,0 +1,11 @@
+#shape {
+		width: 200px;
+		height: 200px;
+		background-color: tomato;
+		display: none;
+		position: relative;
+	}
+
+	#body{
+		font-family: 'Courier New', Courier, monospace
+	}
